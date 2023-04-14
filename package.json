@@ -1,0 +1,23 @@
+{
+  "name": "sftp-node",
+  "version": "1.0.0",
+  "description": "Demo node.js sftp server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "sftp",
+    "ssh"
+  ],
+  "author": "Hardik Kardam",
+  "license": "ISC",
+  "dependencies": {
+    "ssh2": "^1.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
