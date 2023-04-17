@@ -94,7 +94,10 @@ new Server({
                     } else {
                         data += chunk;
                     }
-                })
+                });
+                shell.addListener('error', (shellError) => {
+                    console.log('Shell error: '+shellError);
+                });
             });
             session.on('pty', (accept, reject, info) => {
                 console.log(info);
