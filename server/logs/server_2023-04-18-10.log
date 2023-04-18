@@ -1,0 +1,61 @@
+{"level":"info","message":"[1740.712350630] Custom crypto binding available","timestamp":"2023-04-18T04:56:45.582Z"}
+{"level":"info","message":"[1740.712350630] Local ident: 'SSH-2.0-ssh2js1.11.0'","timestamp":"2023-04-18T04:56:45.584Z"}
+{"level":"info","message":"[1740.712350630] Remote ident: 'SSH-2.0-ssh2js1.11.0'","timestamp":"2023-04-18T04:56:45.587Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":35502},"level":"error","message":"Client conneceted","timestamp":"2023-04-18T04:56:45.589Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending KEXINIT","timestamp":"2023-04-18T04:56:45.589Z"}
+{"level":"info","message":"[1740.712350630] Inbound: Handshake in progress","timestamp":"2023-04-18T04:56:45.593Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) KEX method: curve25519-sha256@libssh.org,curve25519-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group15-sha512,diffie-hellman-group16-sha512,diffie-hellman-group17-sha512,diffie-hellman-group18-sha512","timestamp":"2023-04-18T04:56:45.593Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) KEX method: curve25519-sha256@libssh.org,curve25519-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group15-sha512,diffie-hellman-group16-sha512,diffie-hellman-group17-sha512,diffie-hellman-group18-sha512","timestamp":"2023-04-18T04:56:45.593Z"}
+{"level":"info","message":"[1740.712350630] Handshake: KEX algorithm: curve25519-sha256@libssh.org","timestamp":"2023-04-18T04:56:45.594Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) Host key format: rsa-sha2-512,rsa-sha2-256,ssh-rsa","timestamp":"2023-04-18T04:56:45.594Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) Host key format: ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,rsa-sha2-512,rsa-sha2-256,ssh-rsa","timestamp":"2023-04-18T04:56:45.595Z"}
+{"level":"info","message":"[1740.712350630] Handshake: Host key format: rsa-sha2-512","timestamp":"2023-04-18T04:56:45.595Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) C->S cipher: aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,chacha20-poly1305@openssh.com,aes256-ctr","timestamp":"2023-04-18T04:56:45.596Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) C->S cipher: aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,chacha20-poly1305@openssh.com,aes256-ctr","timestamp":"2023-04-18T04:56:45.596Z"}
+{"level":"info","message":"[1740.712350630] Handshake: C->S Cipher: aes128-gcm@openssh.com","timestamp":"2023-04-18T04:56:45.596Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) S->C cipher: aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,chacha20-poly1305@openssh.com,aes256-ctr","timestamp":"2023-04-18T04:56:45.596Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) S->C cipher: aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,chacha20-poly1305@openssh.com,aes256-ctr","timestamp":"2023-04-18T04:56:45.597Z"}
+{"level":"info","message":"[1740.712350630] Handshake: S->C cipher: aes128-gcm@openssh.com","timestamp":"2023-04-18T04:56:45.597Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) C->S MAC: hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1","timestamp":"2023-04-18T04:56:45.597Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) C->S MAC: hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1","timestamp":"2023-04-18T04:56:45.597Z"}
+{"level":"info","message":"[1740.712350630] Handshake: C->S MAC: <implicit>","timestamp":"2023-04-18T04:56:45.598Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) S->C MAC: hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1","timestamp":"2023-04-18T04:56:45.598Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) S->C MAC: hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1","timestamp":"2023-04-18T04:56:45.598Z"}
+{"level":"info","message":"[1740.712350630] Handshake: S->C MAC: <implicit>","timestamp":"2023-04-18T04:56:45.598Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) C->S compression: none,zlib@openssh.com,zlib","timestamp":"2023-04-18T04:56:45.598Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) C->S compression: none,zlib@openssh.com,zlib","timestamp":"2023-04-18T04:56:45.599Z"}
+{"level":"info","message":"[1740.712350630] Handshake: C->S compression: none","timestamp":"2023-04-18T04:56:45.599Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (local) S->C compression: none,zlib@openssh.com,zlib","timestamp":"2023-04-18T04:56:45.599Z"}
+{"level":"info","message":"[1740.712350630] Handshake: (remote) S->C compression: none,zlib@openssh.com,zlib","timestamp":"2023-04-18T04:56:45.599Z"}
+{"level":"info","message":"[1740.712350630] Handshake: S->C compression: none","timestamp":"2023-04-18T04:56:45.599Z"}
+{"level":"info","message":"[1740.712350630] Received DH Init","timestamp":"2023-04-18T04:56:45.605Z"}
+{"level":"info","message":"[1740.712350630] Generating signature ...","timestamp":"2023-04-18T04:56:45.608Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending KEXECDH_REPLY","timestamp":"2023-04-18T04:56:45.614Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending NEWKEYS","timestamp":"2023-04-18T04:56:45.615Z"}
+{"level":"info","message":"[1740.712350630] Inbound: NEWKEYS","timestamp":"2023-04-18T04:56:45.615Z"}
+{"level":"info","message":"[1740.712350630] Handshake completed","timestamp":"2023-04-18T04:56:45.617Z"}
+{"level":"info","message":"[1740.712350630] Inbound: Received SERVICE_REQUEST (ssh-userauth)","timestamp":"2023-04-18T04:56:45.621Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending SERVICE_ACCEPT (ssh-userauth)","timestamp":"2023-04-18T04:56:45.621Z"}
+{"level":"info","message":"[1740.712350630] Inbound: Received USERAUTH_REQUEST (none)","timestamp":"2023-04-18T04:56:45.625Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending USERAUTH_FAILURE","timestamp":"2023-04-18T04:56:45.626Z"}
+{"level":"info","message":"[1740.712350630] Inbound: Received USERAUTH_REQUEST (password)","timestamp":"2023-04-18T04:56:45.627Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending USERAUTH_SUCCESS","timestamp":"2023-04-18T04:56:45.627Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":35502},"error":{},"level":"error","message":"Client error","timestamp":"2023-04-18T04:56:45.632Z"}
+{"level":"info","message":"[1740.712350630] Inbound: CHANNEL_OPEN (s:0, session)","timestamp":"2023-04-18T04:56:45.633Z"}
+{"level":"info","message":"[1740.712350630] Automatic rejection of unexpected incoming channel open for: session","timestamp":"2023-04-18T04:56:45.633Z"}
+{"level":"info","message":"[1740.712350630] Outbound: Sending CHANNEL_OPEN_FAILURE (r:0)","timestamp":"2023-04-18T04:56:45.633Z"}
+{"level":"info","message":"[1740.712350630] Socket ended","timestamp":"2023-04-18T04:56:45.636Z"}
+{"level":"info","message":"[1740.712350630] Socket closed","timestamp":"2023-04-18T04:56:45.637Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":35502},"level":"info","message":"Client disconnected","timestamp":"2023-04-18T04:56:45.638Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"level":"error","message":"Client conneceted","timestamp":"2023-04-18T04:58:31.831Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"level":"info","message":"Client authenticated","timestamp":"2023-04-18T04:58:31.857Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"level":"info","message":"Client session started","timestamp":"2023-04-18T04:58:31.860Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"level":"info","message":"Client SFTP session","timestamp":"2023-04-18T04:58:31.863Z"}
+{"SFTP":{"attrs":{},"filename":"/home/hardik/Desktop/wClient.txt","flags":2,"flagsToString":null,"reqid":0},"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"level":"info","message":"Client SFTP OPEN","timestamp":"2023-04-18T04:58:31.867Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":42524},"error":{"level":"client-timeout"},"level":"error","message":"Client error","timestamp":"2023-04-18T04:59:31.905Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"level":"error","message":"Client conneceted","timestamp":"2023-04-18T05:27:42.123Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"level":"info","message":"Client authenticated","timestamp":"2023-04-18T05:27:42.138Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"level":"info","message":"Client session started","timestamp":"2023-04-18T05:27:42.139Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"level":"info","message":"Client SFTP session","timestamp":"2023-04-18T05:27:42.141Z"}
+{"SFTP":{"attrs":{},"filename":"/home/hardik/Desktop/wClient.txt","flags":2,"flagsToString":null,"reqid":0},"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"level":"info","message":"Client SFTP OPEN","timestamp":"2023-04-18T05:27:42.142Z"}
+{"clientInfo":{"family":"IPv4","header":{"greeting":"","identRaw":"SSH-2.0-ssh2js1.11.0","versions":{"protocol":"2.0","software":"ssh2js1.11.0"}},"ip":"127.0.0.1","port":56580},"error":{"level":"client-timeout"},"level":"error","message":"Client error","timestamp":"2023-04-18T05:28:42.181Z"}

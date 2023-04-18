@@ -1,9 +1,10 @@
 require("dotenv").config();
 const { Server } = require("ssh2");
-const { readFileSync } = require("fs");
+const { writeFileSync, readFileSync } = require("fs");
 const { timingSafeEqual } = require("crypto");
 const { inspect } = require("util");
 const { OPEN_MODE, STATUS_CODE, flagsToString } = require('ssh2/lib/protocol/SFTP');
+const { serverStreamLogger, writeStreamLogger } = require('./server_logger');
 
 const shellHandler = require("./shell_handler");
 
@@ -23,13 +24,24 @@ function checkValue(input, allowed) {
 
 new Server(
     {
-        debug: (message) => console.log(message),
+        // debug: (message) => {
+        //     serverStreamLogger.log('info', message);
+        // },
         hostKeys: [readFileSync("/etc/ssh/ssh_host_rsa_key")],
     },
     (client, clientInfo) => {
         console.log("Client connected!");
+        serverStreamLogger.log('error', {
+            clientInfo,
+            message: 'Client conneceted'
+        });
         client.on("error", (error) => {
             console.log(error);
+            serverStreamLogger.log('error', {
+                clientInfo,
+                message: 'Client error',
+                error
+            });
         });
         client
             .on("authentication", (ctx) => {
@@ -51,28 +63,56 @@ new Server(
                 else ctx.reject();
             })
             .on("ready", () => {
-                console.log("Client authenticated!");
+                serverStreamLogger.log('info', {
+                    clientInfo,
+                    message: 'Client authenticated',
+                });
                 client.on("session", (accept, reject) => {
                     const session = accept();
+                    serverStreamLogger.log('info', {
+                        clientInfo,
+                        message: 'Client session started'
+                    });
                     session.on("shell", shellHandler(client, session));
                     session.on("pty", (accept, reject, info) => {
                         console.log(info);
                         accept();
                     });
+                    // Currently supported commands open, close, read, write
                     session.on("sftp", (accept, reject) => {
-                        console.log("Client SFTP session");
-                        const openFiles = new Map();
-                        let handleCount = 0;
                         const sftp = accept();
+                        serverStreamLogger.log('info', {
+                            clientInfo,
+                            message: 'Client SFTP session'
+                        });
+                        const openFiles = new Map();
+                        const openFilePaths = new Map();
+                        const openFileModes = new Map();
+                        let handleCount = 0;
                         sftp.on("OPEN", (reqid, filename, flags, attrs) => {
-                            // if (filename !== "/home/hardik/Desktop/wClient.txt" || filename !== "/home/hardik/Desktop/rClient.txt") {
-                            //     return sftp.status(reqid, STATUS_CODE.FAILURE);
-                            // }
-                            console.log(filename, flagsToString(flags), attrs);
+                            // Directory access
+                            // We can also move the base directory of server by prefixing every filename with particular address
+                            // eg: /hello.txt -> (add prefexx '/home/Argus/Desktop') -> /home/Argus/Desktop/hello.txt
+                            if (!filename.startsWith("/home/hardik/Desktop/")) {
+                                return sftp.status(reqid, STATUS_CODE.PERMISSION_DENIED);
+                            }
+                            serverStreamLogger.log('info', {
+                                clientInfo,
+                                message: 'Client SFTP OPEN',
+                                SFTP: {
+                                    reqid,
+                                    filename,
+                                    flagsToString: flagsToString(flags),
+                                    flags,
+                                    attrs
+                                }
+                            });
                             const handle = Buffer.alloc(4);
                             openFiles.set(handleCount, true);
+                            openFilePaths.set(handleCount, filename);
+                            openFileModes.set(handleCount, flags);
                             handle.writeUInt32BE(handleCount++, 0);
-                            console.log("Opening file for write");
+                            console.log("Opening file for " + flagsToString(flags));
                             sftp.handle(reqid, handle);
                         });
                         sftp.on("READ", (reqid, handle, offset, len) => {
@@ -83,14 +123,25 @@ new Server(
                                 return sftp.status(reqid, STATUS_CODE.FAILURE);
                             }
 
-                            // Fake the read operation
-                            console.log(data);
-                            sftp.data(reqid, 'Hello client');
-                            sftp.status(reqid, STATUS_CODE.EOF);
+                            serverStreamLogger.log('info', {
+                                clientInfo,
+                                message: 'Client SFTP READ',
+                                SFTP: {
+                                    reqid,
+                                    handle,
+                                    len,
+                                    offset
+                                }
+                            });
 
-                            console.log(
-                                `Read to file at offset ${offset}, length: ${len}`
+                            // read operation, ignoring return length/offset
+                            sftp.data(reqid, readFileSync(
+                                openFilePaths.get(
+                                    handle.readUInt32BE(0)), 
+                                    { flag: flagsToString(openFileModes.get(handle.readUInt32BE(0))) }
+                                )
                             );
+                            sftp.status(reqid, STATUS_CODE.EOF);
                         });
                         sftp.on("WRITE", (reqid, handle, offset, data) => {
                             if (
@@ -100,13 +151,38 @@ new Server(
                                 return sftp.status(reqid, STATUS_CODE.FAILURE);
                             }
 
-                            // Fake the write operation
-                            console.log(data);
-                            sftp.status(reqid, STATUS_CODE.OK);
+                            // write operation, ignoring sent offset/position
+                            try {
+                                writeFileSync(openFilePaths.get(handle.readUInt32BE(0)), data, {
+                                    mode: openFileModes.get(handle.readUInt32BE(0))
+                                });
+                            } catch (writeError) {
+                                serverStreamLogger.log('error', {
+                                    clientInfo,
+                                    message: 'SFTP WRITE error',
+                                    SFTP: {
+                                        reqid,
+                                        handle,
+                                        inspect: inspect(data),
+                                        offset
+                                    },
+                                    writeError
+                                });
+                                return sftp.status(reqid, STATUS_CODE.FAILURE);
+                            }
 
-                            console.log(
-                                `Write to file at offset ${offset}: ${inspect(data)}`
-                            );
+                            // write success
+                            sftp.status(reqid, STATUS_CODE.OK);
+                            serverStreamLogger.log('info', {
+                                clientInfo,
+                                message: 'Client SFTP WRITE',
+                                SFTP: {
+                                    reqid,
+                                    handle,
+                                    inspect: inspect(data),
+                                    offset
+                                }
+                            });
                         });
                         sftp.on("CLOSE", (reqid, handle) => {
                             let fnum;
@@ -117,16 +193,27 @@ new Server(
                                 return sftp.status(reqid, STATUS_CODE.FAILURE);
                             }
 
-                            console.log("Closing file");
+                            serverStreamLogger.log('info', {
+                                clientInfo,
+                                message: 'Client SFTP CLOSE',
+                                SFTP: {
+                                    reqid,
+                                    handle
+                                }
+                            });
                             openFiles.delete(fnum);
-
+                            openFilePaths.delete(fnum);
+                            openFileModes.delete(fnum);
                             sftp.status(reqid, STATUS_CODE.OK);
                         });
                     });
                 });
             })
             .on("close", () => {
-                console.log("Client disconnected");
+                serverStreamLogger.log('info', {
+                    clientInfo,
+                    message: 'Client disconnected'
+                });
             });
     }
 ).listen(process.env.SERVER_PORT, process.env.SERVER_IPV4_ADDRESS, function () {
