@@ -22,6 +22,7 @@ function checkValue(input, allowed) {
     return !autoReject && isMatch;
 }
 
+// nice code bruh
 new Server(
     {
         // debug: (message) => {
